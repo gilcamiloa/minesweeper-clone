@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+/* CSS classes you can use on your table td to display the relevant tile */
+
+.app {
+  background-color: lightcoral;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+td.unopened {
+  background: url('img/unopened.svg');
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+}
+td.opened {
+  background: url('img/opened.svg');
+}
+td.flagged {
+  background: url('img/flag.svg');
+}
+td.question {
+  background: url('img/question.svg');
+}
+td.mine {
+  background: url('img/mine.png');
+}
+td.mine-neighbour-1 {
+  background: url('img/1.svg');
+}
+td.mine-neighbour-2 {
+  background: url('img/2.svg');
+}
+td.mine-neighbour-3 {
+  background: url('img/3.svg');
+}
+td.mine-neighbour-4 {
+  background: url('img/4.svg');
+}
+td.mine-neighbour-5 {
+  background: url('img/5.svg');
+}
+td.mine-neighbour-6 {
+  background: url('img/6.svg');
+}
+td.mine-neighbour-7 {
+  background: url('img/7.svg');
+}
+td.mine-neighbour-8 {
+  background: url('img/8.svg');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Positioning the Minesweep table and make sure the cells are square */
+table #minesweeper {
+  margin: auto;
+  margin-top: 3em;
+  border: 1px solid #999;
+  border-collapse: collapse;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table #minesweeper td {
+  width: 24px;
+  height: 24px;
+  background-size: cover;
 }
