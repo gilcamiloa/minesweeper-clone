@@ -62,7 +62,7 @@ class App extends Component
 
   endGame = () => {
     this.setState({
-      gameStatus: "ended"
+      gameStatus: "Game Over." //previously 'ended'
     });
   };
 
@@ -91,9 +91,9 @@ class App extends Component
             <h1>Minesweeper</h1>
           </div>
           <div className="browser-right">
-            <div><i className='browser-buttons minimize'/>_</div>
-            <div><i className='browser-buttons enlarge' />☐</div>
-            <div><i className='browser-buttons close'/>X</div>
+            <div className='browser-buttons browser-minimize'><strong>_</strong></div>
+            <div className='browser-buttons browser-enlarge'><strong>☐</strong></div>
+            <div className='browser-buttons browser-close'><strong>X</strong></div>
           </div>
         </div>
         <div className="minesweeper">

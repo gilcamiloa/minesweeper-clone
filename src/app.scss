@@ -18,8 +18,9 @@ html #root .app,
 body #root .app {
     display: flex;
     flex-direction: column;
-    background-color: lightgray;
-    width: 550px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 531px;
     justify-items: center;
 }
 
@@ -27,24 +28,37 @@ html #root .browser,
 body #root .browser {
     display: flex;
     flex-direction: row;
-    background-color: lightgray;
     background-color: blue;
-    margin-right: 10px;
+    box-sizing: border-box;
+    padding: 5px;
     color: white;
     width: 100%;
     justify-content: space-between;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     .browser-right {
       display: flex;
+      justify-content: space-between;
       .browser-buttons {
         display: flex;
         flex-direction: row;
-        padding: 10px;
+        padding: 0px 7px;
         align-items: center;
         border: 2px;
         border-style: solid;
+        border-radius: 5px;
         width: 10px;
         border-color: white;
-        z-index: 1;
+      }
+      .browser-minimize {
+        background-image: linear-gradient(white, rgb(17, 17, 205));
+      }
+      .browser-enlarge {
+        background-image: linear-gradient(white, rgb(17, 17, 205));
+      }
+      .browser-close {
+        background-color: rgb(188, 79, 79);
+
       }
     }
 

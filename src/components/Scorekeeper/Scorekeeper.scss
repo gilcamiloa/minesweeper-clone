@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
 .score-head {
   display: flex;
   flex-direction: row;
   height: 100px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   border-left: 1px solid #444;
   border-right: 1px solid #444;
-  border: 10px;
+  padding: 0px 10px;
+  border: 2px solid gray;
 
   .reset,
   .flag-count,
@@ -16,9 +19,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    border: 2px solid gray;
+    color: red;
+    font-family: 'Orbitron', sans-serif;
   }
 
   .reset {
     font-size: 25px;
+    color: yellow;
   }
 }

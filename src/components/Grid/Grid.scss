@@ -1,12 +1,14 @@
 .grid {
   width: 531px;
-  height: 531px;
+  height: 521px;
   border: 1px solid #444;
-  border-bottom: none;
+  border-bottom: 1px solid #444;
+  box-sizing: border-box;
 
   .row {
     display: flex;
     height: 52px;
+    box-sizing: border-box;
 
     &:last-child {
       border-bottom: none;
@@ -23,20 +25,16 @@
       &.open {
         background-color: #adacac;
         outline: 0.5px solid #444;
-
-        &:hover {
-          background-color: none;
-        }
       }
 
       &:hover {
         outline: 3px solid rgb(255, 255, 255);
         background-color: #8d8c8c;
+        &.open {
+            background-color: none
+          }
       }
-
-      &:last-child {
-        border-right: none;
-      }
+      // Removesd last child right margin none
     }
   }
 }

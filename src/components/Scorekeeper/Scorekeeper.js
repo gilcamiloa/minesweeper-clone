@@ -10,17 +10,18 @@ const Scorekeeper = props => {
   let time = `${minutes}:${formattedSeconds}`;
   let status =
     props.status === "running" || props.status === "waiting" ? (
-      <i className="icon ion-social-github" />
+      // <i className="icon ion-social-github" />
+      <i className="icon ion-happy-outline" />
     ) : (
       <i className="icon ion-sad-outline" />
     );
   return (
     <div className="score-head">
-      <div className="flag-count">{props.flagsUsed}</div>
+      <div className="flag-count"><strong>{props.flagsUsed}</strong></div>
       <button className="reset" onClick={props.reset}>
-        {status}
+        <strong>{status}</strong>
       </button>
-      <div className="timer">{time}</div>
+      <div className="timer"><strong>{time}</strong></div>
     </div>
   );
 };
