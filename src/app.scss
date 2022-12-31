@@ -1,0 +1,137 @@
+@import "components/Grid/Grid.scss";
+@import "components/Scorekeeper/Scorekeeper.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+html #root,
+body #root {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html #root .app,
+body #root .app {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    width: 550px;
+    justify-items: center;
+}
+
+html #root .browser,
+body #root .browser {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+    background-color: blue;
+    margin-right: 10px;
+    color: white;
+    width: 100%;
+    justify-content: space-between;
+    .browser-right {
+      display: flex;
+      .browser-buttons {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        align-items: center;
+        border: 2px;
+        border-style: solid;
+        width: 10px;
+        border-color: white;
+        z-index: 1;
+      }
+    }
+
+}
+
+html #root .minesweeper,
+body #root .minesweeper {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+}
+
+html #root .minesweeper h1,
+body #root .minesweeper h1 {
+  text-align: center;
+  border-left: 1px solid #444;
+  border-top: 1px solid #444;
+  border-right: 1px solid #444;
+}
+
+.score-head {
+  display: flex;
+  flex-direction: row;
+  height: 55px;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+}
+
+.score-head .reset
+.score-head .flag-count,
+.score-head .timer {
+  width: 55px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-head .reset {
+  font-size: 25px;
+}
+
+.score {
+  width: 499px;
+  height: 499px;
+  border: 1px solid #444;
+  border-bottom: none;
+}
+
+.score .row {
+  display: flex;
+  height: 50px;
+}
+
+.score .row:last-child {
+  border-bottom: none;
+  height: 50px;
+}
+
+.score .row .cell {
+  border-right: 1px solid #444;
+  width: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #444;
+}
+
+.score .row .cell.open {
+  background-color: #d4d4d4;
+}
+
+.score .row .cell.open:hover {
+  background-color: #d4d4d4;
+}
+
+.score .row .cell:hover {
+  background-color: #eeeeee;
+}
+
+.score .row .cell:last-child {
+  border-right: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

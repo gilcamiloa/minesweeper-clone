@@ -1,51 +1,119 @@
-import React from 'react';
-import { openOnClick, flagOnClick } from './Minesweeper.js';
-import './app.css';
+import { React, Component } from 'react';
+import Scorekeeper from './components/Scorekeeper/Scorekeeper';
+import Grid from './components/Grid/Grid';
+import Footer from './components/Footer/Footer';
+import './app.scss';
 
-export default function App() {
+class App extends Component
+{
 
-  const GRID_SIZE = 10;
-  const MINE_FREQUENCY = 0.15;
+  constructor() {
+    super();
 
+    this.state = {
+      gameStatus: "waiting", // can be running, waiting, or ended
+      time: 0, // in seconds, will format later
+      flagCount: 10,
+      openCells: 0,
+      mines: 10,
+      rows: 10,
+      columns: 10
+    };
 
-  const minesweeper = document.querySelector('#minesweeper');
-  for (let i = 0; i < GRID_SIZE; i += 1) {
-    const row = document.createElement('tr');
-    row.dataset.row = i;
-    for (let j = 0; j < GRID_SIZE; j += 1) {
-      row.insertAdjacentHTML('beforeend', `<td class="unopened" data-column="${j}"></td>`);
-    }
-    minesweeper.append(row);
+    this.baseState = this.state;
   }
 
-  document.querySelectorAll('td').forEach((td) => {
-    td.dataset.column = td.cellIndex;
-    td.dataset.row = td.parentElement.rowIndex;
-
-    if (Math.random() <= MINE_FREQUENCY) {
-      td.classList.add('has-mine');
+  componentDidUpdate(nextProps, nextState) {
+    if (this.state.gameStatus === "running") {
+      this.checkForWinner();
     }
-
-    td.addEventListener('click', openOnClick);
-    td.addEventListener('contextmenu', flagOnClick);
-  });
+  }
 
 
-  return (
-    <div className="app">
-      <h1>Minesweeper</h1>
-      <table id="minesweeper">
-        <tbody>
-          <tr>
-            <td class="unopened"></td>
-            <td class="unopened"></td>
-          </tr>
-          <tr>
-            <td class="unopened"></td>
-            <td class="unopened"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+  checkForWinner = () => {
+    if (this.state.mines + this.state.openCells >= this.state.rows * this.state.columns) {
+      this.setState({
+        gameStatus: "winner"
+      }, alert("you won!"))
+    }
+  }
+
+  componentWillMount() {
+    this.intervals = [];
+  }
+
+  setInterval = (fn, t) => {
+    this.intervals.push(setInterval(fn, t));
+  };
+
+  reset = () => {
+    this.intervals.map(clearInterval);
+    this.setState(Object.assign({}, this.baseState), () => {
+      this.intervals = [];
+    });
+  };
+
+  tick = () => {
+    if (this.state.openCells > 0 && this.state.gameStatus === "running") {
+      let time = this.state.time + 1;
+      this.setState({ time });
+    }
+  };
+
+  endGame = () => {
+    this.setState({
+      gameStatus: "ended"
+    });
+  };
+
+  changeFlagAmount = amount => {
+    this.setState({ flagCount: this.state.flagCount + amount });
+  };
+
+  handleCellClick = () => {
+    if (this.state.openCells === 0 && this.state.gameStatus !== "running") {
+      this.setState(
+        {
+          gameStatus: "running"
+        },
+        this.setInterval(this.tick, 1000)
+      );
+    }
+    this.setState(prevState => {
+      return { openCells: prevState.openCells + 1 };
+    });
+  };
+  render() {
+    return (
+      <div className='app'>
+        <div className="browser">
+          <div className="browser-left">
+            <h1>Minesweeper</h1>
+          </div>
+          <div className="browser-right">
+            <div><i className='browser-buttons minimize'/>_</div>
+            <div><i className='browser-buttons enlarge' />☐</div>
+            <div><i className='browser-buttons close'/>X</div>
+          </div>
+        </div>
+        <div className="minesweeper">
+          <Scorekeeper  time={this.state.time}
+                        flagsUsed={this.state.flagCount}
+                        reset={this.reset}
+                        status={this.state.gameStatus} />
+          <Grid         openCells={this.state.openCells}
+                        mines={this.state.mines}
+                        rows={this.state.rows}
+                        columns={this.state.columns}
+                        endGame={this.endGame}
+                        status={this.state.gameStatus}
+                        onCellClick={this.handleCellClick}
+                        changeFlagAmount={this.changeFlagAmount} />
+        </div>
+        <Footer/>
+      </div>
+    );
+  }
 }
+
+export default App;

@@ -1,0 +1,25 @@
+.footer {
+  width: 501px;
+  height: 50px;
+  padding-top: 50px;
+  background-color: salmon;
+  opacity: 0.5;
+  overflow: hidden;
+  align-content: space-between;
+  justify-content: space-between;
+
+  a {
+    z-index: 2;
+    font-size: 1.1em;
+    padding: 0px 20px 0px 20px;
+    pointer-events: stroke;
+    height: 100px;
+    width: 100px;
+    .website {
+
+    }
+  }
+
+  .icon {
+  }
+}
