@@ -15,15 +15,11 @@
     pointer-events: stroke;
     height: 100px;
     width: 100px;
-    a:hover i {
-      transform: scale(1.5em);
-    }
-  }
-  .icon {
     height: auto;
     font-size: 40px;
     color: #444;
     :hover {
+      transition: opacity 0.7s ease-in-out;
       transform: scale(1.5);
     }
   }
